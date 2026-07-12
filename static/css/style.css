@@ -6,39 +6,111 @@
 }
 
 body{
-    background:#f4f6f8;
+    background:#eef4ff;
 }
 
-nav{
-    background:#0f172a;
-    color:white;
+/* ---------- Navbar ---------- */
+
+.navbar{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
-    padding:18px 60px;
+
+    padding:20px 70px;
+
+    background:#0F172A;
+
 }
 
-nav ul{
-    display:flex;
-    list-style:none;
-    gap:25px;
-}
+.logo{
 
-nav a{
     color:white;
+
+}
+
+.nav-links{
+
+    display:flex;
+
+    gap:30px;
+
+    list-style:none;
+
+}
+
+.nav-links a{
+
+    color:white;
+
     text-decoration:none;
+
+    font-weight:bold;
+
 }
 
-main{
+/* ---------- Hero ---------- */
+
+.hero{
+
+    height:85vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
     text-align:center;
-    margin-top:80px;
+
 }
 
-h1{
-    color:#2563eb;
+.hero h1{
+
+    font-size:55px;
+
+    color:#1E3A8A;
+
 }
 
-p{
-    margin-top:15px;
-    font-size:18px;
+.hero p{
+
+    margin-top:20px;
+
+    font-size:22px;
+
+    color:#555;
+
+}
+
+.hero-buttons{
+
+    margin-top:40px;
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.hero-buttons button{
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2563EB;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
 }
