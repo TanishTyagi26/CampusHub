@@ -97,7 +97,10 @@ body{
 
 }
 
-.hero-buttons button{
+.hero-buttons a{
+    display:inline-block;
+
+    text-decoration:none;
 
     padding:14px 28px;
 
@@ -110,6 +113,58 @@ body{
     color:white;
 
     font-size:16px;
+
+    cursor:pointer;
+
+}
+
+.login-container{
+
+    width:350px;
+
+    margin:80px auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+    text-align:center;
+
+}
+
+.login-container form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.login-container input{
+
+    padding:12px;
+
+    border:1px solid #ccc;
+
+    border-radius:6px;
+
+}
+
+.login-container button{
+
+    padding:12px;
+
+    background:#2563EB;
+
+    color:white;
+
+    border:none;
+
+    border-radius:6px;
 
     cursor:pointer;
 
