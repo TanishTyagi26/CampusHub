@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Faculty Login{% endblock %}
+
+{% block content %}
+
+<section class="login-container">
+
+    <h1>Faculty Login</h1>
+
+    <form action="/faculty" method="POST">
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Faculty Email"
+            required>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required>
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+</section>
+
+{% endblock %}

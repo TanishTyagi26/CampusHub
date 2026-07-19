@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Faculty Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>Welcome {{ faculty_name }} 👋</h1>
+
+    <h2>Faculty Dashboard</h2>
+
+    <hr>
+
+    <a href="/faculty/upload">
+        <button>📤 Upload Notes</button>
+    </a>
+
+    <a href="/faculty/notes">
+        <button>📚 Manage Notes</button>
+    </a>
+
+    <a href="/faculty/announcements">
+        <button>📢 Manage Announcements</button>
+    </a>
+
+    <a href="/faculty/logout">
+        <button>🚪 Logout</button>
+    </a>
+
+</div>
+
+{% endblock %}
