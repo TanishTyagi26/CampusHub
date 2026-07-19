@@ -4,8 +4,31 @@ import sqlite3
 auth = Blueprint("auth", __name__)
 
 # Login Page
-@auth.route("/login/<role>")
+@auth.route("/login/<role>", methods=["GET", "POST"])
 def login(role):
+
+    if request.method == "POST":
+
+        email = request.form["email"]
+        password = request.form["password"]
+
+        connection = sqlite3.connect("database/campushub.db")
+        cursor = connection.cursor()
+
+        cursor.execute(
+            "SELECT * FROM students WHERE email=? AND password=?",
+            (email, password)
+        )
+
+        user = cursor.fetchone()
+
+        connection.close()
+
+        if user:
+            return redirect("/student/dashboard")
+
+        return "Invalid Email or Password"
+
     return render_template("login.html", role=role.title())
 
 
@@ -29,8 +52,8 @@ def register_student():
     cursor = connection.cursor()
 
     cursor.execute("""
-    INSERT INTO students(full_name,email,password,branch,year)
-    VALUES(?,?,?,?,?)
+        INSERT INTO students(full_name,email,password,branch,year)
+        VALUES(?,?,?,?,?)
     """, (full_name, email, password, branch, year))
 
     connection.commit()
