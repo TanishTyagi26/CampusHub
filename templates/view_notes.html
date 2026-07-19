@@ -11,7 +11,8 @@
     <tr>
         <th>Title</th>
         <th>Subject</th>
-        <th>File Name</th>
+        <th>File</th>
+        <th>Download</th>
     </tr>
 
     {% for note in notes %}
@@ -19,10 +20,14 @@
     <tr>
 
         <td>{{ note[1] }}</td>
-
         <td>{{ note[2] }}</td>
-
         <td>{{ note[3] }}</td>
+
+        <td>
+            <a href="/student/download/{{ note[3] }}">
+                Download
+            </a>
+        </td>
 
     </tr>
 

@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, current_app
 import sqlite3
 import os
+from flask import send_from_directory
 
 student = Blueprint("student", __name__)
 
@@ -56,3 +57,12 @@ def view_notes():
     connection.close()
 
     return render_template("view_notes.html", notes=notes)
+
+@student.route("/student/download/<filename>")
+def download_note(filename):
+
+    return send_from_directory(
+        current_app.config["UPLOAD_FOLDER"],
+        filename,
+        as_attachment=True
+    )
