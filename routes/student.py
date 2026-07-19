@@ -1,3 +1,7 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 student = Blueprint("student", __name__)
+
+@student.route("/student")
+def student_home():
+    return render_template("login.html")

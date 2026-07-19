@@ -14,10 +14,10 @@
         <h2 class="logo">CampusHub</h2>
     
         <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="#">Student</a></li>
-            <li><a href="#">Faculty</a></li>
-            <li><a href="#">Admin</a></li>
+            <li><a href="{{ url_for('main.home') }}">Home</a></li>
+            <li><a href="{{ url_for('student.student_home') }}">Student</a></li>
+            <li><a href="{{ url_for('faculty.faculty_home') }}">Faculty</a></li>
+            <li><a href="{{ url_for('admin.admin_home') }}">Admin</a></li>
         </ul>
     
     </nav>
