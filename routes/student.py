@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, current_app
 import sqlite3
 import os
 from flask import send_from_directory
+from flask import session
 
 student = Blueprint("student", __name__)
 
@@ -12,8 +13,14 @@ def student_home():
 
 @student.route("/student/dashboard")
 def dashboard():
-    return render_template("dashboard.html")
 
+    if "student_id" not in session:
+        return redirect("/login/student")
+
+    return render_template(
+        "dashboard.html",
+        student_name=session["student_name"]
+    )
 
 @student.route("/student/upload", methods=["GET", "POST"])
 def upload_notes():
@@ -65,4 +72,27 @@ def download_note(filename):
         current_app.config["UPLOAD_FOLDER"],
         filename,
         as_attachment=True
+    )
+
+@student.route("/student/profile")
+def profile():
+
+    if "student_id" not in session:
+        return redirect("/login/student")
+
+    connection = sqlite3.connect("database/campushub.db")
+    cursor = connection.cursor()
+
+    cursor.execute(
+        "SELECT * FROM students WHERE id=?",
+        (session["student_id"],)
+    )
+
+    student_data = cursor.fetchone()
+
+    connection.close()
+
+    return render_template(
+        "profile.html",
+        student=student_data
     )
