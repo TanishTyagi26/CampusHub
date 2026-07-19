@@ -15,6 +15,15 @@ CREATE TABLE IF NOT EXISTS students(
 )
 """)
 
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS notes(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    subject TEXT NOT NULL,
+    filename TEXT NOT NULL
+)
+""")
+
 connection.commit()
 connection.close()
 

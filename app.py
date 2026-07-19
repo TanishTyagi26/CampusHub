@@ -8,6 +8,10 @@ from routes.admin import admin
 
 app = Flask(__name__)
 
+app.secret_key = "campushub123"
+
+app.config["UPLOAD_FOLDER"] = "uploads"
+
 app.register_blueprint(main)
 app.register_blueprint(auth)
 app.register_blueprint(student)
