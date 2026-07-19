@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}View Notes{% endblock %}
+
+{% block content %}
+
+<h1>Uploaded Notes</h1>
+
+<table border="1" cellpadding="10">
+
+    <tr>
+        <th>Title</th>
+        <th>Subject</th>
+        <th>File Name</th>
+    </tr>
+
+    {% for note in notes %}
+
+    <tr>
+
+        <td>{{ note[1] }}</td>
+
+        <td>{{ note[2] }}</td>
+
+        <td>{{ note[3] }}</td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}
