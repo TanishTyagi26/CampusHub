@@ -17,9 +17,24 @@ def dashboard():
     if "student_id" not in session:
         return redirect("/login/student")
 
+    connection = sqlite3.connect("database/campushub.db")
+    cursor = connection.cursor()
+
+    # Total Notes
+    cursor.execute("SELECT COUNT(*) FROM notes")
+    notes_count = cursor.fetchone()[0]
+
+    # Total Announcements
+    cursor.execute("SELECT COUNT(*) FROM announcements")
+    announcements_count = cursor.fetchone()[0]
+
+    connection.close()
+
     return render_template(
         "dashboard.html",
-        student_name=session["student_name"]
+        student_name=session["student_name"],
+        notes_count=notes_count,
+        announcements_count=announcements_count
     )
 
 @student.route("/student/upload", methods=["GET", "POST"])

@@ -6,10 +6,28 @@
 
 <div class="container">
 
-    <h1><h1>Welcome {{ student_name }}</h1></h1>
+    <h1>Welcome {{ student_name }} 👋</h1>
     <h2>Student Dashboard</h2>
 
     <hr>
+
+    <div class="dashboard-cards">
+
+        <div class="card">
+            <h3>Total Notes</h3>
+            <h1>{{ notes_count }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>Announcements</h3>
+            <h1>{{ announcements_count }}</h1>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h3>Quick Actions</h3>
 
     <a href="/student/upload"><button>Upload Notes</button></a>
 
@@ -23,7 +41,9 @@
         <button>Profile</button>
     </a>
 
-    <a href="/"><button>Logout</button></a>
+    <a href="/">
+        <button>Logout</button>
+    </a>
 
 </div>
 
