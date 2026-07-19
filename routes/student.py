@@ -28,13 +28,33 @@ def dashboard():
     cursor.execute("SELECT COUNT(*) FROM announcements")
     announcements_count = cursor.fetchone()[0]
 
+    # Recent Notes
+    cursor.execute("""
+        SELECT title, subject
+        FROM notes
+        ORDER BY id DESC
+        LIMIT 5
+    """)
+    recent_notes = cursor.fetchall()
+
+    # Latest Announcements
+    cursor.execute("""
+        SELECT title
+        FROM announcements
+        ORDER BY id DESC
+        LIMIT 5
+    """)
+    recent_announcements = cursor.fetchall()
+
     connection.close()
 
     return render_template(
         "dashboard.html",
         student_name=session["student_name"],
         notes_count=notes_count,
-        announcements_count=announcements_count
+        announcements_count=announcements_count,
+        recent_notes=recent_notes,
+        recent_announcements=recent_announcements
     )
 
 @student.route("/student/upload", methods=["GET", "POST"])

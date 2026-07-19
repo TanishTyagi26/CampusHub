@@ -29,21 +29,72 @@
 
     <h3>Quick Actions</h3>
 
-    <a href="/student/upload"><button>Upload Notes</button></a>
+    <a href="/student/upload">
+        <button>📤 Upload Notes</button>
+    </a>
 
-    <a href="/student/notes"><button>View Notes</button></a>
+    <a href="/student/notes">
+        <button>📚 View Notes</button>
+    </a>
 
     <a href="/student/announcements">
-        <button>Announcements</button>
+        <button>📢 Announcements</button>
     </a>
 
     <a href="/student/profile">
-        <button>Profile</button>
+        <button>👤 Profile</button>
     </a>
 
-    <a href="/">
-        <button>Logout</button>
+    <a href="/logout">
+        <button>🚪 Logout</button>
     </a>
+
+    <hr>
+
+    <h3>📚 Recent Notes</h3>
+
+    {% if recent_notes %}
+
+        <ul>
+
+            {% for note in recent_notes %}
+
+                <li>
+                    <strong>{{ note[0] }}</strong>
+                    ({{ note[1] }})
+                </li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+        <p>No notes uploaded yet.</p>
+
+    {% endif %}
+
+    <hr>
+
+    <h3>📢 Latest Announcements</h3>
+
+    {% if recent_announcements %}
+
+        <ul>
+
+            {% for announcement in recent_announcements %}
+
+                <li>{{ announcement[0] }}</li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+        <p>No announcements available.</p>
+
+    {% endif %}
 
 </div>
 
