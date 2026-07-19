@@ -24,6 +24,14 @@ CREATE TABLE IF NOT EXISTS notes(
 )
 """)
 
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS announcements(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL
+)
+""")
+
 connection.commit()
 connection.close()
 

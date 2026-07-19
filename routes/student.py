@@ -96,3 +96,26 @@ def profile():
         "profile.html",
         student=student_data
     )
+
+@student.route("/student/announcements")
+def announcements():
+
+    if "student_id" not in session:
+        return redirect("/login/student")
+
+    connection = sqlite3.connect("database/campushub.db")
+    cursor = connection.cursor()
+
+    cursor.execute("""
+    SELECT * FROM announcements
+    ORDER BY id DESC
+    """)
+
+    announcements = cursor.fetchall()
+
+    connection.close()
+
+    return render_template(
+        "announcements.html",
+        announcements=announcements
+    )

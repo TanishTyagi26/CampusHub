@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Announcements{% endblock %}
+
+{% block content %}
+
+<h1>Latest Announcements</h1>
+
+{% for announcement in announcements %}
+
+<div style="border:1px solid #ccc;padding:15px;margin:15px;">
+
+    <h2>{{ announcement[1] }}</h2>
+
+    <p>{{ announcement[2] }}</p>
+
+</div>
+
+{% endfor %}
+
+<a href="/student/dashboard">
+    <button>Back</button>
+</a>
+
+{% endblock %}
