@@ -1,26 +1,102 @@
 {% extends "base.html" %}
 
-{% block title %}
-Home
-{% endblock %}
+{% block title %}CampusHub{% endblock %}
 
 {% block content %}
 
 <section class="hero">
 
-    <h1>Welcome to CampusHub</h1>
+    <div class="hero-content">
 
-    <p>
-        Your Complete Digital Campus Management System
-    </p>
+        <h1>
+            🎓 CampusHub
+        </h1>
 
-    <div class="hero-buttons">
+        <h2>
+            Your Complete Digital Campus
+        </h2>
 
-        <a href="/login/student">Student Login</a>
+        <p>
 
-        <a href="/login/faculty">Faculty Login</a>
+            A centralized platform where students,
+            faculty and administrators can manage
+            notes, announcements and academic
+            activities efficiently.
 
-        <a href="/login/admin">Admin Login</a>
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="/student">
+                <button>
+                    <i class="fa-solid fa-user-graduate"></i>
+                    Student
+                </button>
+            </a>
+
+            <a href="/faculty">
+                <button>
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    Faculty
+                </button>
+            </a>
+
+            <a href="/admin">
+                <button>
+                    <i class="fa-solid fa-user-shield"></i>
+                    Admin
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="features container">
+
+    <h1 class="text-center">
+        Why CampusHub?
+    </h1>
+
+    <div class="dashboard-cards">
+
+        <div class="card">
+
+            <i class="fa-solid fa-book fa-3x"></i>
+
+            <h3>Notes Management</h3>
+
+            <p>
+                Upload, download and organize study material easily.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fa-solid fa-bullhorn fa-3x"></i>
+
+            <h3>Announcements</h3>
+
+            <p>
+                Stay updated with important notices from faculty.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fa-solid fa-users fa-3x"></i>
+
+            <h3>Role Based Access</h3>
+
+            <p>
+                Separate portals for Students, Faculty and Admin.
+            </p>
+
+        </div>
 
     </div>
 

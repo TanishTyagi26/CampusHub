@@ -14,11 +14,13 @@
     <div class="dashboard-cards">
 
         <div class="card">
+            <i class="fa-solid fa-book"></i>
             <h3>Total Notes</h3>
             <h1>{{ notes_count }}</h1>
         </div>
 
         <div class="card">
+            <i class="fa-solid fa-bullhorn"></i>
             <h3>Announcements</h3>
             <h1>{{ announcements_count }}</h1>
         </div>
@@ -27,74 +29,45 @@
 
     <hr>
 
-    <h3>Quick Actions</h3>
+    <h3>
+        <i class="fa-solid fa-bolt"></i>
+        Quick Actions
+    </h3>
 
     <a href="/student/upload">
-        <button>📤 Upload Notes</button>
+        <button>
+            <i class="fa-solid fa-upload"></i>
+            Upload Notes
+        </button>
     </a>
 
     <a href="/student/notes">
-        <button>📚 View Notes</button>
+        <button>
+            <i class="fa-solid fa-book"></i>
+            View Notes
+        </button>
     </a>
 
     <a href="/student/announcements">
-        <button>📢 Announcements</button>
+        <button>
+            <i class="fa-solid fa-bullhorn"></i>
+            Announcements
+        </button>
     </a>
 
     <a href="/student/profile">
-        <button>👤 Profile</button>
+        <button>
+            <i class="fa-solid fa-user"></i>
+            My Profile
+        </button>
     </a>
 
     <a href="/logout">
-        <button>🚪 Logout</button>
+        <button>
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </button>
     </a>
-
-    <hr>
-
-    <h3>📚 Recent Notes</h3>
-
-    {% if recent_notes %}
-
-        <ul>
-
-            {% for note in recent_notes %}
-
-                <li>
-                    <strong>{{ note[0] }}</strong>
-                    ({{ note[1] }})
-                </li>
-
-            {% endfor %}
-
-        </ul>
-
-    {% else %}
-
-        <p>No notes uploaded yet.</p>
-
-    {% endif %}
-
-    <hr>
-
-    <h3>📢 Latest Announcements</h3>
-
-    {% if recent_announcements %}
-
-        <ul>
-
-            {% for announcement in recent_announcements %}
-
-                <li>{{ announcement[0] }}</li>
-
-            {% endfor %}
-
-        </ul>
-
-    {% else %}
-
-        <p>No announcements available.</p>
-
-    {% endif %}
 
 </div>
 

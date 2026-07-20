@@ -55,11 +55,16 @@ def faculty_dashboard():
     connection = sqlite3.connect("database/campushub.db")
     cursor = connection.cursor()
 
+    # Total Notes
     cursor.execute("SELECT COUNT(*) FROM notes")
     notes_count = cursor.fetchone()[0]
 
+    # Total Announcements
     cursor.execute("SELECT COUNT(*) FROM announcements")
-    announcements_count = cursor.fetchone()[0]
+    announcement_count = cursor.fetchone()[0]
+
+    print("Notes Count:", notes_count)
+    print("Announcement Count:", announcement_count)
 
     connection.close()
 
@@ -67,9 +72,8 @@ def faculty_dashboard():
         "faculty_dashboard.html",
         faculty_name=session["faculty_name"],
         notes_count=notes_count,
-        announcements_count=announcements_count
+        announcement_count=announcement_count
     )
-
 
 # ==========================
 # Upload Notes

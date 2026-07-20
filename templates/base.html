@@ -1,34 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}CampusHub{% endblock %}</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}CampusHub{% endblock %}
+    </title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
+
 <body>
 
-    <nav class="navbar">
+<header>
 
-        <h2 class="logo">CampusHub</h2>
-    
-        <ul class="nav-links">
-            <li><a href="{{ url_for('main.home') }}">Home</a></li>
-            <li><a href="{{ url_for('student.student_home') }}">Student</a></li>
-            <li><a href="{{ url_for('faculty.faculty_login') }}">Faculty</a></li>
-            <li><a href="{{ url_for('admin.admin_home') }}">Admin</a></li>
-        </ul>
-    
-    </nav>
+<nav class="navbar">
 
-    <main>
+    <div class="logo">
 
-        {% block content %}
+        <i class="fa-solid fa-graduation-cap"></i>
 
-        {% endblock %}
+        CampusHub
 
-    </main>
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="{{ url_for('main.home') }}">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('student.student_home') }}">
+                <i class="fa-solid fa-user-graduate"></i>
+                Student
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('faculty.faculty_login') }}">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                Faculty
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('admin.admin_home') }}">
+                <i class="fa-solid fa-user-shield"></i>
+                Admin
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+</header>
+
+<main>
+
+{% block content %}
+
+{% endblock %}
+
+</main>
+
+<footer>
+
+    © 2026 CampusHub — Your Complete Digital Campus
+
+</footer>
 
 </body>
+
 </html>

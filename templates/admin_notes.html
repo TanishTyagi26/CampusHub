@@ -33,15 +33,24 @@
 
 <td>
 
-<a href="/student/download/{{ note[3] }}">
-Download
-</a>
+    <a href="/student/download/{{ note[3] }}">
 
-|
+        <button>
+            <i class="fa-solid fa-download"></i>
+            Download
+        </button>
 
-<a href="/admin/delete_note/{{ note[0] }}">
-Delete
-</a>
+    </a>
+
+    <a href="/admin/delete_note/{{ note[0] }}"
+       onclick="return confirm('Are you sure you want to delete this note?')">
+
+        <button>
+            <i class="fa-solid fa-trash"></i>
+            Delete
+        </button>
+
+    </a>
 
 </td>
 
