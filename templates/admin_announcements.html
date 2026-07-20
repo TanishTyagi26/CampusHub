@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Announcements{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+<h1>All Announcements</h1>
+
+<table border="1" cellpadding="10">
+
+<tr>
+
+<th>ID</th>
+<th>Title</th>
+<th>Description</th>
+<th>Action</th>
+
+</tr>
+
+{% for announcement in announcements %}
+
+<tr>
+
+<td>{{ announcement[0] }}</td>
+<td>{{ announcement[1] }}</td>
+<td>{{ announcement[2] }}</td>
+
+<td>
+
+<a href="/admin/delete_announcement/{{ announcement[0] }}">
+Delete
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/admin/dashboard">
+<button>Back</button>
+</a>
+
+</div>
+
+{% endblock %}

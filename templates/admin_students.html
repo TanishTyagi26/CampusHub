@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Students{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+<h1>All Students</h1>
+
+<table border="1" cellpadding="10">
+
+<tr>
+
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Branch</th>
+<th>Year</th>
+<th>Action</th>
+
+</tr>
+
+{% for student in students %}
+
+<tr>
+
+<td>{{ student[0] }}</td>
+<td>{{ student[1] }}</td>
+<td>{{ student[2] }}</td>
+<td>{{ student[4] }}</td>
+<td>{{ student[5] }}</td>
+
+<td>
+
+<a href="/admin/delete_student/{{ student[0] }}">
+Delete
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/admin/dashboard">
+<button>Back</button>
+</a>
+
+</div>
+
+{% endblock %}

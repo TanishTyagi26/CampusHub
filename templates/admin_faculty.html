@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Faculty{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+<h1>All Faculty</h1>
+
+<table border="1" cellpadding="10">
+
+<tr>
+
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Department</th>
+<th>Action</th>
+
+</tr>
+
+{% for teacher in faculty %}
+
+<tr>
+
+<td>{{ teacher[0] }}</td>
+<td>{{ teacher[1] }}</td>
+<td>{{ teacher[2] }}</td>
+<td>{{ teacher[4] }}</td>
+
+<td>
+
+<a href="/admin/delete_faculty/{{ teacher[0] }}">
+Delete
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/admin/dashboard">
+<button>Back</button>
+</a>
+
+</div>
+
+{% endblock %}
