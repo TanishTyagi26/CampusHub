@@ -78,6 +78,24 @@
 
 <main>
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% if messages %}
+
+        {% for category, message in messages %}
+
+            <div class="flash {{ category }}">
+
+                {{ message }}
+
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+{% endwith %}
+
 {% block content %}
 
 {% endblock %}
@@ -86,7 +104,17 @@
 
 <footer>
 
-    © 2026 CampusHub — Your Complete Digital Campus
+    <p>
+
+        © 2026 CampusHub — Your Complete Digital Campus
+
+    </p>
+
+    <p>
+
+        Developed by Tanish Tyagi
+
+    </p>
 
 </footer>
 

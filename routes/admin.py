@@ -1,6 +1,15 @@
-from flask import Blueprint, render_template, request, redirect, session
+from flask import (
+    Blueprint,
+    render_template,
+    request,
+    redirect,
+    session,
+    flash
+)
+
 import sqlite3
 
+admin = Blueprint("admin", __name__)
 admin = Blueprint("admin", __name__)
 
 
@@ -12,15 +21,16 @@ def admin_home():
 
     if request.method == "POST":
 
-        username = request.form["username"]
-        password = request.form["password"]
+        username = request.form["username"].strip()
+        password = request.form["password"].strip()
 
         connection = sqlite3.connect("database/campushub.db")
         cursor = connection.cursor()
 
         cursor.execute("""
-        SELECT * FROM admin
-        WHERE username=? AND password=?
+            SELECT *
+            FROM admin
+            WHERE username=? AND password=?
         """, (username, password))
 
         user = cursor.fetchone()
@@ -32,12 +42,21 @@ def admin_home():
             session["admin_id"] = user[0]
             session["admin_username"] = user[1]
 
+            flash(
+                "Welcome Admin!",
+                "success"
+            )
+
             return redirect("/admin/dashboard")
 
-        return "Invalid Username or Password"
+        flash(
+            "Invalid Username or Password.",
+            "error"
+        )
+
+        return redirect("/admin")
 
     return render_template("admin_login.html")
-
 
 # ==========================
 # Dashboard
@@ -115,8 +134,12 @@ def delete_student(id):
     connection.commit()
     connection.close()
 
-    return redirect("/admin/students")
+    flash(
+        "Student deleted successfully.",
+        "success"
+    )
 
+    return redirect("/admin/students")
 
 # ==========================
 # Faculty
@@ -159,8 +182,12 @@ def delete_faculty(id):
     connection.commit()
     connection.close()
 
-    return redirect("/admin/faculty")
+    flash(
+        "Faculty member deleted successfully.",
+        "success"
+    )
 
+    return redirect("/admin/faculty")
 
 # ==========================
 # Notes
@@ -203,6 +230,11 @@ def admin_delete_note(id):
     connection.commit()
     connection.close()
 
+    flash(
+        "Note deleted successfully.",
+        "success"
+    )
+
     return redirect("/admin/notes")
 
 
@@ -219,8 +251,9 @@ def admin_announcements():
     cursor = connection.cursor()
 
     cursor.execute("""
-    SELECT * FROM announcements
-    ORDER BY id DESC
+        SELECT *
+        FROM announcements
+        ORDER BY id DESC
     """)
 
     announcements = cursor.fetchall()
@@ -232,7 +265,7 @@ def admin_announcements():
         announcements=announcements
     )
 
-
+    
 @admin.route("/admin/delete_announcement/<int:id>")
 def admin_delete_announcement(id):
 
@@ -250,8 +283,12 @@ def admin_delete_announcement(id):
     connection.commit()
     connection.close()
 
-    return redirect("/admin/announcements")
+    flash(
+        "Announcement deleted successfully.",
+        "success"
+    )
 
+    return redirect("/admin/announcements")
 
 # ==========================
 # Logout
@@ -260,5 +297,10 @@ def admin_delete_announcement(id):
 def admin_logout():
 
     session.clear()
+
+    flash(
+        "Logged out successfully.",
+        "success"
+    )
 
     return redirect("/")

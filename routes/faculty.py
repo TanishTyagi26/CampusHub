@@ -1,4 +1,13 @@
-from flask import Blueprint, render_template, request, redirect, session, current_app
+from flask import (
+    Blueprint,
+    render_template,
+    request,
+    redirect,
+    session,
+    current_app,
+    flash
+)
+
 import sqlite3
 import os
 
@@ -8,6 +17,7 @@ faculty = Blueprint("faculty", __name__)
 # ==========================
 # Faculty Login
 # ==========================
+@faculty.route("/faculty", methods=["GET", "POST"])
 @faculty.route("/faculty", methods=["GET", "POST"])
 def faculty_login():
 
@@ -19,13 +29,11 @@ def faculty_login():
         connection = sqlite3.connect("database/campushub.db")
         cursor = connection.cursor()
 
-        cursor.execute(
-            """
-            SELECT * FROM faculty
+        cursor.execute("""
+            SELECT *
+            FROM faculty
             WHERE email=? AND password=?
-            """,
-            (email, password)
-        )
+        """, (email, password))
 
         user = cursor.fetchone()
 
@@ -36,12 +44,21 @@ def faculty_login():
             session["faculty_id"] = user[0]
             session["faculty_name"] = user[1]
 
+            flash(
+                "Welcome back, Faculty!",
+                "success"
+            )
+
             return redirect("/faculty/dashboard")
 
-        return "Invalid Email or Password"
+        flash(
+            "Invalid Email or Password.",
+            "error"
+        )
+
+        return redirect("/faculty")
 
     return render_template("faculty_login.html")
-
 
 # ==========================
 # Dashboard
@@ -63,9 +80,6 @@ def faculty_dashboard():
     cursor.execute("SELECT COUNT(*) FROM announcements")
     announcement_count = cursor.fetchone()[0]
 
-    print("Notes Count:", notes_count)
-    print("Announcement Count:", announcement_count)
-
     connection.close()
 
     return render_template(
@@ -86,10 +100,19 @@ def faculty_upload():
 
     if request.method == "POST":
 
-        title = request.form["title"]
-        subject = request.form["subject"]
+        title = request.form["title"].strip()
+        subject = request.form["subject"].strip()
 
         file = request.files["file"]
+
+        if file.filename == "":
+
+            flash(
+                "Please choose a file.",
+                "error"
+            )
+
+            return redirect("/faculty/upload")
 
         filename = file.filename
 
@@ -103,21 +126,28 @@ def faculty_upload():
         connection = sqlite3.connect("database/campushub.db")
         cursor = connection.cursor()
 
-        cursor.execute(
-            """
-            INSERT INTO notes(title,subject,filename,uploaded_by)
-            VALUES(?,?,?,?)
-            """,
-            (
+        cursor.execute("""
+            INSERT INTO notes(
                 title,
                 subject,
                 filename,
-                "Faculty"
+                uploaded_by
             )
-        )
+            VALUES(?,?,?,?)
+        """, (
+            title,
+            subject,
+            filename,
+            "Faculty"
+        ))
 
         connection.commit()
         connection.close()
+
+        flash(
+            "Notes uploaded successfully.",
+            "success"
+        )
 
         return redirect("/faculty/notes")
 
@@ -172,8 +202,12 @@ def delete_note(id):
     connection.commit()
     connection.close()
 
-    return redirect("/faculty/notes")
+    flash(
+        "Note deleted successfully.",
+        "success"
+    )
 
+    return redirect("/faculty/notes")
 
 # ==========================
 # Announcements
@@ -189,21 +223,26 @@ def faculty_announcements():
 
     if request.method == "POST":
 
-        title = request.form["title"]
-        description = request.form["description"]
+        title = request.form["title"].strip()
+        description = request.form["description"].strip()
 
-        cursor.execute(
-            """
-            INSERT INTO announcements(title,description)
-            VALUES(?,?)
-            """,
-            (
-                title,
-                description
-            )
+        cursor.execute("""
+            INSERT INTO announcements(
+            title,
+            description
         )
+        VALUES(?,?)
+    """, (
+        title,
+        description
+    ))
 
-        connection.commit()
+    connection.commit()
+
+    flash(
+        "Announcement posted successfully.",
+        "success"
+    )
 
     cursor.execute("""
         SELECT *
@@ -241,6 +280,11 @@ def delete_announcement(id):
     connection.commit()
     connection.close()
 
+    flash(
+        "Announcement deleted successfully.",
+        "success"
+    )
+
     return redirect("/faculty/announcements")
 
 
@@ -251,5 +295,10 @@ def delete_announcement(id):
 def faculty_logout():
 
     session.clear()
+
+    flash(
+        "Logged out successfully.",
+        "success"
+    )
 
     return redirect("/")
