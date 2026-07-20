@@ -42,6 +42,14 @@ CREATE TABLE IF NOT EXISTS faculty(
 )
 """)
 
+try:
+    cursor.execute("""
+    ALTER TABLE notes
+    ADD COLUMN uploaded_by TEXT DEFAULT 'Student'
+    """)
+except:
+    pass
+
 connection.commit()
 connection.close()
 

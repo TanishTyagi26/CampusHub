@@ -7,10 +7,27 @@
 <div class="container">
 
     <h1>Welcome {{ faculty_name }} 👋</h1>
-
     <h2>Faculty Dashboard</h2>
 
     <hr>
+
+    <div class="dashboard-cards">
+
+        <div class="card">
+            <h3>Total Notes</h3>
+            <h1>{{ notes_count }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>Announcements</h3>
+            <h1>{{ announcement_count }}</h1>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h3>Quick Actions</h3>
 
     <a href="/faculty/upload">
         <button>📤 Upload Notes</button>
